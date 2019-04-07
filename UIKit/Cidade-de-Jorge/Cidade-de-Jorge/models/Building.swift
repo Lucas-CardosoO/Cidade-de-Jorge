@@ -18,9 +18,9 @@ enum Location: Int {
 
 struct Status {
     var recursos: ValueChange
-    var populacao: ValueChange
+    var populacao: ValueChangePercent
     var iniciativaPrivada: ValueChangePercent
-    var arrecadacao: ValueChangePercent
+    var arrecadacao: ValueChange
 }
 
 enum ValueChange:Int {
