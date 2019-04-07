@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     var selecionadaDaRodada:(type1 :CardCollectionViewCell?,type2:CardCollectionViewCell?)
     private let cellMapId = "mapCollectionViewCell"
     private let cellCardId = "CardCollectionViewCell"
-    
+    var NumTurnos = 0
     var popularidade = 50
     var inicPrivada = 50
     var recursos = 200
@@ -182,7 +182,13 @@ extension ViewController{
             // aqui leal faz ais par
             print(choice1.label.text)
             print(choice2.label.text)
-       
+            
         }
+    }
+    func nextTurn(){
+        selecionadaDaRodada.type1 = nil
+        selecionadaDaRodada.type2 = nil
+        self.cellCardId
+        self.NumTurnos += 1
     }
 }
