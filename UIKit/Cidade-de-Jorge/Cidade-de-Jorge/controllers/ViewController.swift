@@ -121,7 +121,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             return cell
         }
     }
-    
+    func desSelect(_ collectionView: UICollectionView , cell:UICollectionViewCell){
+         collectionView.visibleCells.map { ( ncell
+            ) in
+            if ncell != cell{
+                ncell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
+            }
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.cardCollection {
             selectedCard = roundCards[indexPath.row]
@@ -131,6 +138,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             populationCard.text = "\(status!.populacao.rawValue)"
             incomeCard.text = "\(status!.arrecadacao.rawValue)"
             privateCard.text = "\(status!.iniciativaPrivada.rawValue)"
+            let cell = collectionView.cellForItem(at: indexPath)
+            cell?.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            desSelect(collectionView,cell:cell!)
         }
     }
 }
