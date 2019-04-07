@@ -89,15 +89,16 @@ class ViewController: UIViewController {
                       (LuxBuilding(), .central, nil),
                       (LuxBuilding(), .periferica, nil)]
         
-        for _ in 0...4{
-            self.roundCards.append(self.cards.randomElement()!)
-        }
-        
-        //self.roundCards = [self.cards].randomElement()!
-        
-        self.selectedCard = self.roundCards.first
+       createCards()
     }
-    
+    func createCards(){
+        var listaCartas : [BuildingMap] = []
+        for _ in 0...4{
+           listaCartas.append(self.cards.randomElement()!)
+        }
+        self.roundCards =  listaCartas
+        
+    }
     
     @IBAction func yesPressed(_ sender: Any) {
 
@@ -121,7 +122,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func noNothingPressed(_ sender: Any) {
-        
+        nextTurn()
     }
     
 }
@@ -146,11 +147,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             
             cell.label.text = self.roundCards[indexPath.row].building.name
             cell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
+            
+            cell.building = self.roundCards[indexPath.row].building
+            cell.location = self.roundCards[indexPath.row].location
+            
             return cell
         }
     }
     func desSelect(_ collectionView: UICollectionView , cell:UICollectionViewCell){
-         collectionView.visibleCells.map { ( ncell
+         collectionView.visibleCells.forEach { ( ncell
             ) in
             if ncell != cell{
                 ncell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
@@ -179,16 +184,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 extension ViewController{
     func choicesInTurn(){
         if let choice1 = selecionadaDaRodada.type1 , let choice2 = selecionadaDaRodada.type2 {
-            // aqui leal faz ais par
             print(choice1.label.text)
             print(choice2.label.text)
-            
+            nextTurn()
         }
     }
     func nextTurn(){
         selecionadaDaRodada.type1 = nil
         selecionadaDaRodada.type2 = nil
-        self.cellCardId
+        createCards()
+        self.cardCollection.reloadData()
         self.NumTurnos += 1
     }
 }
