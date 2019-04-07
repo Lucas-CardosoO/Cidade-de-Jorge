@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var cards: [BuildingMap] = []
     var roundCards: [BuildingMap] = []
     var selectedCard: BuildingMap!
-    var selecionadaDaRodada:(type1 :CardCollectionViewCell?,type2:CardCollectionViewCell?)
+    var selecionadaDaRodada: CardCollectionViewCell!
     private let cellMapId = "mapCollectionViewCell"
     private let cellCardId = "CardCollectionViewCell"
     var NumTurnos = 0
@@ -103,17 +103,17 @@ class ViewController: UIViewController {
     
     @IBAction func yesPressed(_ sender: Any) {
         
+        if self.cardCollection.visibleCells.filter({$0.backgroundColor == #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)}).count >= 2{
+            //self.nextTurn()
+            return
+        }
+        
         self.cardCollection.visibleCells.forEach({ (cell) in
             if cell.backgroundColor == #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1) {
-                if let cardMapCeel = cell as? CardCollectionViewCell{
-                    if selecionadaDaRodada.type1 == nil {
-                        selecionadaDaRodada.type1 = cardMapCeel
-                        cell.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-                    }
-                    else if selecionadaDaRodada.type2 == nil && cardMapCeel != selecionadaDaRodada.type1{
-                        selecionadaDaRodada.type2 = cardMapCeel
-                        choicesInTurn()
-                    }
+                if let cardMapCell = cell as? CardCollectionViewCell{
+                    self.selecionadaDaRodada = cardMapCell
+                    cell.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+                    choicesInTurn()
                 }
             }
             
@@ -174,6 +174,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.cardCollection {
+            
+            if self.cardCollection.visibleCells.filter({$0.backgroundColor == #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)}).count >= 2{
+                return
+            }
+            
             selectedCard = roundCards[indexPath.row]
             selectedLabel.text = selectedCard?.building.name
             let status = selectedCard?.building.Build(selectedCard?.location ?? Location.anywhere, selectedCard?.destination)
@@ -193,9 +198,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 
 extension ViewController{
     func choicesInTurn(){
-        if let choice1 = selecionadaDaRodada.type1 , let choice2 = selecionadaDaRodada.type2 {
+        if let choice1 = selecionadaDaRodada{
             
-            var buildArray: [MapCell] = self.map.filter { (block) -> Bool in
+            let buildArray: [MapCell] = self.map.filter { (block) -> Bool in
                 switch choice1.location!{
                 case .anywhere:
                     return true
@@ -208,40 +213,17 @@ extension ViewController{
                     return  choice1.building.Build(choice1.location, cell.building) != nil
             }
             
-            var buildBlock = buildArray.randomElement()
+            let buildBlock = buildArray.randomElement()
             
             if let buildBlock = buildBlock, let status = choice1.building.Build(choice1.location, buildBlock.building){
                 self.updateStatus(update: status)
                 self.map[buildBlock.id].building = choice1.building
             }
-            
-            buildArray = self.map.filter { (block) -> Bool in
-                switch choice2.location!{
-                case .anywhere:
-                    return true
-                case .central:
-                    return block.type == Location.central
-                case .periferica:
-                    return block.type == Location.periferica
-                }
-                }.filter { (cell) -> Bool in
-                    return  choice1.building.Build(choice2.location, cell.building) != nil
-            }
-            
-            buildBlock = buildArray.randomElement()
-            
-            if let buildBlock = buildBlock, let status = choice1.building.Build(choice1.location, buildBlock.building){
-                self.updateStatus(update: status)
-                print(status)
-                self.map[buildBlock.id].building = choice2.building
-            }
-            
-            self.mapCollection.reloadData()
         }
+         self.mapCollection.reloadData()
     }
     func nextTurn(){
-        selecionadaDaRodada.type1 = nil
-        selecionadaDaRodada.type2 = nil
+        selecionadaDaRodada = nil
         createCards()
         self.cardCollection.reloadData()
         self.NumTurnos += 1
