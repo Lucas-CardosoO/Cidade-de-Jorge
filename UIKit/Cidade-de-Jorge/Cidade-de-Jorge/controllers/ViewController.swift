@@ -108,7 +108,7 @@ class ViewController: UIViewController {
                     if selecionadaDaRodada.type1 == nil {
                         selecionadaDaRodada.type1 = cardMapCeel
                     }
-                    else if selecionadaDaRodada.type2 == nil{
+                    else if selecionadaDaRodada.type2 == nil && cardMapCeel != selecionadaDaRodada.type1{
                         selecionadaDaRodada.type2 = cardMapCeel
                         choicesInTurn()
                     }
