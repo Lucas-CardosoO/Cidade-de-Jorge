@@ -187,7 +187,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bd7-EN-e75">
                                         <rect key="frame" x="256" y="35" width="256" height="30"/>
-                                        <state key="normal" title="FAZER NADA"/>
+                                        <state key="normal" title="PASSAR TURNO"/>
                                         <connections>
                                             <action selector="noNothingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u4q-M4-T5M"/>
                                         </connections>
@@ -321,21 +321,53 @@
                                     <constraint firstAttribute="width" secondItem="jLA-Gy-Le7" secondAttribute="height" multiplier="1:1" id="wyD-yh-dA1"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrecadação" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XX-kX-Ih3">
+                                <rect key="frame" x="20" y="680.5" width="97.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="População" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fN-MK-IOI">
+                                <rect key="frame" x="20" y="700" width="80" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recursos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsY-W8-A3i">
+                                <rect key="frame" x="20" y="660" width="71.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iniciativa Privada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pD7-Tc-0RX">
+                                <rect key="frame" x="20" y="720.5" width="128" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="pD7-Tc-0RX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2Yq-K1-Duc"/>
+                            <constraint firstItem="pD7-Tc-0RX" firstAttribute="top" secondItem="2fN-MK-IOI" secondAttribute="bottom" id="8HF-3n-UMv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jgc-pz-4nO" secondAttribute="bottom" id="9t2-ng-Ufi"/>
+                            <constraint firstItem="2fN-MK-IOI" firstAttribute="top" secondItem="5XX-kX-Ih3" secondAttribute="bottom" constant="-1" id="BQt-q2-kR8"/>
                             <constraint firstItem="jLA-Gy-Le7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="H6c-Oi-Wbf"/>
                             <constraint firstItem="jLA-Gy-Le7" firstAttribute="height" secondItem="Nc4-47-Cvu" secondAttribute="height" multiplier="0.6" id="LiX-hH-kxI"/>
+                            <constraint firstItem="vsY-W8-A3i" firstAttribute="top" secondItem="jLA-Gy-Le7" secondAttribute="top" id="Okb-XI-c8t"/>
                             <constraint firstItem="Nc4-47-Cvu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ryb-C4-PSg"/>
+                            <constraint firstItem="5XX-kX-Ih3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UsW-Fy-WiF"/>
+                            <constraint firstItem="5XX-kX-Ih3" firstAttribute="top" secondItem="vsY-W8-A3i" secondAttribute="bottom" id="WrY-BF-GVs"/>
                             <constraint firstItem="Jgc-pz-4nO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="X6D-n1-6eL"/>
                             <constraint firstItem="5Zx-cu-NXD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jNg-N7-3J0"/>
                             <constraint firstItem="Nc4-47-Cvu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kVo-WI-3Yo"/>
                             <constraint firstItem="5Zx-cu-NXD" firstAttribute="top" secondItem="Nc4-47-Cvu" secondAttribute="bottom" id="ldg-eW-Bgv"/>
                             <constraint firstItem="Jgc-pz-4nO" firstAttribute="top" secondItem="jLA-Gy-Le7" secondAttribute="bottom" id="mJ5-i3-y4v"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jgc-pz-4nO" secondAttribute="trailing" id="mcN-T5-gl5"/>
+                            <constraint firstItem="2fN-MK-IOI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="omf-fq-ESJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Zx-cu-NXD" secondAttribute="trailing" id="owk-oM-N4C"/>
                             <constraint firstItem="jLA-Gy-Le7" firstAttribute="top" secondItem="5Zx-cu-NXD" secondAttribute="bottom" id="sVO-aF-kc8"/>
+                            <constraint firstItem="vsY-W8-A3i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="tMQ-7J-nWt"/>
                             <constraint firstItem="Nc4-47-Cvu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="zBa-Nx-uqt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -343,11 +375,15 @@
                     <connections>
                         <outlet property="cardCollection" destination="5Zx-cu-NXD" id="3ch-gn-DXG"/>
                         <outlet property="cardView" destination="jLA-Gy-Le7" id="sKO-kT-Chm"/>
-                        <outlet property="incomeCard" destination="o8Z-aK-jnS" id="Mwu-Oo-Ohj"/>
+                        <outlet property="incomeLabel" destination="o8Z-aK-jnS" id="Mwu-Oo-Ohj"/>
+                        <outlet property="incomeUserLabel" destination="5XX-kX-Ih3" id="hOI-fc-A41"/>
                         <outlet property="mapCollection" destination="Nc4-47-Cvu" id="bUk-CV-cva"/>
-                        <outlet property="populationCard" destination="F5Y-39-fbt" id="nUT-rM-Qry"/>
-                        <outlet property="privateCard" destination="gxc-Oi-aKY" id="gnd-7Q-bJ9"/>
-                        <outlet property="resourcesCard" destination="tR4-mt-upQ" id="gPb-RE-nlM"/>
+                        <outlet property="populationLabel" destination="F5Y-39-fbt" id="nUT-rM-Qry"/>
+                        <outlet property="populationUserLabel" destination="2fN-MK-IOI" id="6ns-vd-Bd6"/>
+                        <outlet property="privateLabel" destination="gxc-Oi-aKY" id="gnd-7Q-bJ9"/>
+                        <outlet property="privateUserLabel" destination="pD7-Tc-0RX" id="GCj-Lh-LOG"/>
+                        <outlet property="resourcesLabel" destination="tR4-mt-upQ" id="gPb-RE-nlM"/>
+                        <outlet property="resourcesUserLabel" destination="vsY-W8-A3i" id="z1I-YL-vi8"/>
                         <outlet property="selectedLabel" destination="Ldz-kR-clR" id="yVL-my-OzK"/>
                     </connections>
                 </viewController>

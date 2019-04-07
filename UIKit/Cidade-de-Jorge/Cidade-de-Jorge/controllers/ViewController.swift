@@ -19,15 +19,29 @@ class ViewController: UIViewController {
     
     private let cellMapId = "mapCollectionViewCell"
     private let cellCardId = "CardCollectionViewCell"
+    
+    var popularidade = 50
+    var inicPrivada = 50
+    var recursos = 200
+    var arrec = 0
+    var indicePopulacao = 15
+    var indiceInicPrivad = 0
 
     @IBOutlet weak var selectedLabel: UILabel!
     @IBOutlet weak var cardCollection: UICollectionView!
     @IBOutlet weak var mapCollection: UICollectionView!
     @IBOutlet weak var cardView: UIView!
-    @IBOutlet weak var resourcesCard: UILabel!
-    @IBOutlet weak var incomeCard: UILabel!
-    @IBOutlet weak var populationCard: UILabel!
-    @IBOutlet weak var privateCard: UILabel!
+    @IBOutlet weak var resourcesLabel: UILabel!
+    @IBOutlet weak var incomeLabel: UILabel!
+    @IBOutlet weak var populationLabel: UILabel!
+    @IBOutlet weak var privateLabel: UILabel!
+    
+    @IBOutlet weak var resourcesUserLabel: UILabel!
+    @IBOutlet weak var incomeUserLabel: UILabel!
+    @IBOutlet weak var populationUserLabel: UILabel!
+    @IBOutlet weak var privateUserLabel: UILabel!
+    
+    
     
     let columnLayoutMap = ColumnFlowLayout(
         cellsPerRow: 4,
@@ -127,10 +141,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             selectedCard = roundCards[indexPath.row]
             selectedLabel.text = selectedCard?.building.name
             let status = selectedCard?.building.Build(selectedCard?.location ?? Location.anywhere, selectedCard?.destination)
-            resourcesCard.text = "\(status!.recursos.rawValue)"
-            populationCard.text = "\(status!.populacao.rawValue)"
-            incomeCard.text = "\(status!.arrecadacao.rawValue)"
-            privateCard.text = "\(status!.iniciativaPrivada.rawValue)"
+            resourcesLabel.text = "\(status!.recursos.rawValue)"
+            populationLabel.text = "\(status!.populacao.rawValue)"
+            incomeLabel.text = "\(status!.arrecadacao.rawValue)"
+            privateLabel.text = "\(status!.iniciativaPrivada.rawValue)"
         }
     }
 }
