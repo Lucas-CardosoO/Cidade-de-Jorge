@@ -9,7 +9,7 @@
 import Foundation
 
 class LuxBuilding: Building {
-    func Build(_ location: Location) -> Status {
+    func Build(_ location: Location, _ building: Building?) -> Status {
         var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
         switch location {
         case .central:
@@ -20,5 +20,5 @@ class LuxBuilding: Building {
         return status
     }
     
-    var name: String = "Predio de Luxo"
+    var name: String = "LuxBuilding"
 }
