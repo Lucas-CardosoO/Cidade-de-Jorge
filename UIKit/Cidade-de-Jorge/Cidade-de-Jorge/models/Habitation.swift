@@ -12,7 +12,7 @@ class Habitation: Building {
     func Build(_ location: Location, _ building: Building?) -> Status {
         var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
         
-        if(building != nil){
+        if(building == nil){
             switch location {
             case .central:
                 status = Status(recursos: .minorDecrease, populacao: .majorImprove, iniciativaPrivada: .majorDecrease, arrecadacao: .neutral)
