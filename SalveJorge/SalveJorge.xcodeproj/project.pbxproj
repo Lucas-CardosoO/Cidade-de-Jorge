@@ -15,6 +15,8 @@
 		E644F8522259B1D400866589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E644F8502259B1D400866589 /* LaunchScreen.storyboard */; };
 		E644F85D2259B1D400866589 /* SalveJorgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E644F85C2259B1D400866589 /* SalveJorgeTests.swift */; };
 		E644F8682259B1D400866589 /* SalveJorgeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E644F8672259B1D400866589 /* SalveJorgeUITests.swift */; };
+		E6D6C1B62259DC6E004AF6BB /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D6C1B52259DC6E004AF6BB /* GameState.swift */; };
+		E6D6C1B82259EC3B004AF6BB /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D6C1B72259EC3B004AF6BB /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		E644F8632259B1D400866589 /* SalveJorgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalveJorgeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E644F8672259B1D400866589 /* SalveJorgeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalveJorgeUITests.swift; sourceTree = "<group>"; };
 		E644F8692259B1D400866589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6D6C1B52259DC6E004AF6BB /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		E6D6C1B72259EC3B004AF6BB /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				E644F8452259B1D100866589 /* AppDelegate.swift */,
 				E644F8472259B1D100866589 /* art.scnassets */,
 				E644F8492259B1D100866589 /* GameViewController.swift */,
+				E6D6C1B52259DC6E004AF6BB /* GameState.swift */,
+				E6D6C1B72259EC3B004AF6BB /* City.swift */,
 				E644F84B2259B1D100866589 /* Main.storyboard */,
 				E644F84E2259B1D400866589 /* Assets.xcassets */,
 				E644F8502259B1D400866589 /* LaunchScreen.storyboard */,
@@ -262,6 +268,8 @@
 			files = (
 				E644F84A2259B1D100866589 /* GameViewController.swift in Sources */,
 				E644F8462259B1D100866589 /* AppDelegate.swift in Sources */,
+				E6D6C1B82259EC3B004AF6BB /* City.swift in Sources */,
+				E6D6C1B62259DC6E004AF6BB /* GameState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +445,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q3AL2NX4UR;
 				INFOPLIST_FILE = SalveJorge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,7 +464,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q3AL2NX4UR;
 				INFOPLIST_FILE = SalveJorge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
