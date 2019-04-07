@@ -40,9 +40,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var incomeUserLabel: UILabel!
     @IBOutlet weak var populationUserLabel: UILabel!
     @IBOutlet weak var privateUserLabel: UILabel!
-    
-    
-    
+
     let columnLayoutMap = ColumnFlowLayout(
         cellsPerRow: 4,
         minimumInteritemSpacing: 10,
@@ -91,11 +89,11 @@ class ViewController: UIViewController {
                       (LuxBuilding(), .central, nil),
                       (LuxBuilding(), .periferica, nil)]
         
-//        for x in 0...4{
-//            self.roundCards.append(self.cards[x])
-//        }
+        for _ in 0...4{
+            self.roundCards.append(self.cards.randomElement()!)
+        }
         
-        self.roundCards = self.cards
+        //self.roundCards = [self.cards].randomElement()!
         
         self.selectedCard = self.roundCards.first
     }
@@ -103,7 +101,7 @@ class ViewController: UIViewController {
     
     @IBAction func yesPressed(_ sender: Any) {
 
-        self.mapCollection.visibleCells.map { (cell) in
+        self.cardCollection.visibleCells.forEach({ (cell) in
             if cell.backgroundColor == #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1) {
                 if let cardMapCeel = cell as? CardCollectionViewCell{
                     if selecionadaDaRodada?.type1 == nil {
@@ -111,17 +109,19 @@ class ViewController: UIViewController {
                     }
                     else if selecionadaDaRodada?.type2 == nil{
                         selecionadaDaRodada?.type2 = cardMapCeel
-                        // aqui vai o metadoDeLeal
+                        choicesInTurn()
                     }
                 }
             }
-        }
+
+        })
     }
     
     @IBAction func noPressed(_ sender: Any) {
     }
     
     @IBAction func noNothingPressed(_ sender: Any) {
+        
     }
     
 }
@@ -177,5 +177,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 
 
 extension ViewController{
-    
+    func choicesInTurn(){
+        if let choice1 = selecionadaDaRodada?.type1 , let choice2 = selecionadaDaRodada?.type2 {
+            // aqui leal faz ais par
+            print(choice1.label)
+            print(choice2.label)
+        }
+    }
 }
