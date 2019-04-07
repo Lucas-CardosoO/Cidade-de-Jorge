@@ -118,10 +118,9 @@ class ViewController: UIViewController {
         })
     }
     
-    @IBAction func noPressed(_ sender: Any) {
-    }
     
     @IBAction func noNothingPressed(_ sender: Any) {
+        self.updateStatus(update: Status(recursos: .neutral, populacao: .minorDecrease, iniciativaPrivada: .neutral, arrecadacao: .neutral))
         nextTurn()
     }
     
@@ -179,8 +178,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 }
 
 
-
-
 extension ViewController{
     func choicesInTurn(){
         if let choice1 = selecionadaDaRodada.type1 , let choice2 = selecionadaDaRodada.type2 {
@@ -201,7 +198,7 @@ extension ViewController{
             var buildBlock = buildArray.randomElement()
             
             if let buildBlock = buildBlock, let status = choice1.building.Build(choice1.location, buildBlock.building){
-                //TODO: aplicar status
+                self.updateStatus(update: status)
                 print(status)
                 self.map[buildBlock.id].building = choice1.building
             }
@@ -222,7 +219,7 @@ extension ViewController{
             buildBlock = buildArray.randomElement()
             
             if let buildBlock = buildBlock, let status = choice1.building.Build(choice1.location, buildBlock.building){
-                //TODO: aplicar status
+                self.updateStatus(update: status)
                 print(status)
                 self.map[buildBlock.id].building = choice2.building
             }
@@ -237,5 +234,17 @@ extension ViewController{
         createCards()
         self.cardCollection.reloadData()
         self.NumTurnos += 1
+    }
+    
+    func updateStatus(update: Status){
+        print(update)
+    }
+    
+    func endGame(win: Bool){
+        if win == true{
+            //ganhou
+        }else{
+            //perdeu
+        }
     }
 }
