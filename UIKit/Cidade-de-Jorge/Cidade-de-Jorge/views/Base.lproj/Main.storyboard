@@ -182,7 +182,7 @@
                                         <rect key="frame" x="0.0" y="35" width="384" height="30"/>
                                         <state key="normal" title="PASSAR TURNO"/>
                                         <connections>
-                                            <action selector="noNothingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u4q-M4-T5M"/>
+                                            <action selector="doNothingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u4q-M4-T5M"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNa-MI-xug">

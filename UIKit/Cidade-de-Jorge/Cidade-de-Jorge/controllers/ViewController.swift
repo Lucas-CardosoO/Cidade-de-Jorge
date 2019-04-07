@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     var arrec = 0
     var indicePopulacao = 15
     var indiceInicPrivad = 0
-
+    
     @IBOutlet weak var selectedLabel: UILabel!
     @IBOutlet weak var cardCollection: UICollectionView!
     @IBOutlet weak var mapCollection: UICollectionView!
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var incomeUserLabel: UILabel!
     @IBOutlet weak var populationUserLabel: UILabel!
     @IBOutlet weak var privateUserLabel: UILabel!
-
+    
     let columnLayoutMap = ColumnFlowLayout(
         cellsPerRow: 4,
         minimumInteritemSpacing: 10,
@@ -89,19 +89,20 @@ class ViewController: UIViewController {
                       (LuxBuilding(), .central, nil),
                       (LuxBuilding(), .periferica, nil)]
         
-       createCards()
+        createCards()
+        self.updateDataInView()
     }
     func createCards(){
         var listaCartas : [BuildingMap] = []
         for _ in 0...4{
-           listaCartas.append(self.cards.randomElement()!)
+            listaCartas.append(self.cards.randomElement()!)
         }
         self.roundCards =  listaCartas
         
     }
     
     @IBAction func yesPressed(_ sender: Any) {
-
+        
         self.cardCollection.visibleCells.forEach({ (cell) in
             if cell.backgroundColor == #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1) {
                 if let cardMapCeel = cell as? CardCollectionViewCell{
@@ -115,12 +116,19 @@ class ViewController: UIViewController {
                     }
                 }
             }
-
+            
         })
     }
     
+    func updateDataInView(){
+        resourcesUserLabel.text = "recursos: \(self.recursos)"
+        populationUserLabel.text = "popularidade: \(self.popularidade)"
+        incomeUserLabel.text = "arrecadação \(self.arrec)"
+        privateUserLabel.text = "iniciativa privada: \(self.inicPrivada)"
+    }
     
-    @IBAction func noNothingPressed(_ sender: Any) {
+    
+    @IBAction func doNothingPressed(_ sender: Any) {
         self.updateStatus(update: Status(recursos: .neutral, populacao: .minorDecrease, iniciativaPrivada: .neutral, arrecadacao: .neutral))
         nextTurn()
     }
@@ -155,7 +163,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         }
     }
     func desSelect(_ collectionView: UICollectionView , cell:UICollectionViewCell){
-         collectionView.visibleCells.forEach { ( ncell
+        collectionView.visibleCells.forEach { ( ncell
             ) in
             if ncell != cell{
                 if ncell.backgroundColor != #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1){
@@ -171,13 +179,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             let status = selectedCard?.building.Build(selectedCard?.location ?? Location.anywhere, selectedCard?.destination)
             let cell = collectionView.cellForItem(at: indexPath)
             if cell?.backgroundColor != #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1){
-                  cell?.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+                cell?.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             }
             desSelect(collectionView,cell:cell!)
-            resourcesLabel.text = "\(status!.recursos.rawValue)"
-            populationLabel.text = "\(status!.populacao.rawValue)"
-            incomeLabel.text = "\(status!.arrecadacao.rawValue)"
-            privateLabel.text = "\(status!.iniciativaPrivada.rawValue)"
+            resourcesLabel.text = "recursos: \(status!.recursos.rawValue)"
+            populationLabel.text = "popularidade: \(status!.populacao.rawValue)"
+            incomeLabel.text = "arrecadação: \(status!.arrecadacao.rawValue)"
+            privateLabel.text = "iniciativa privada: \(status!.iniciativaPrivada.rawValue)"
         }
     }
 }
@@ -204,7 +212,6 @@ extension ViewController{
             
             if let buildBlock = buildBlock, let status = choice1.building.Build(choice1.location, buildBlock.building){
                 self.updateStatus(update: status)
-                print(status)
                 self.map[buildBlock.id].building = choice1.building
             }
             
@@ -239,17 +246,31 @@ extension ViewController{
         createCards()
         self.cardCollection.reloadData()
         self.NumTurnos += 1
+        
+        self.updateDataInView()
+        
+        if self.popularidade <= 0 || self.inicPrivada <= 0 || self.recursos < 0 {
+            endGame(win: false)
+        }
+        
+        if self.popularidade == 100 && self.inicPrivada == 100 {
+            endGame(win: true)
+        }
     }
     
     func updateStatus(update: Status){
-        print(update)
+        self.arrec += update.arrecadacao.rawValue
+        
+        self.recursos += self.arrec
+        self.popularidade = (self.popularidade + update.populacao.rawValue) > 100 ? 100 : (self.popularidade + update.populacao.rawValue)
+        self.inicPrivada = (self.inicPrivada + update.iniciativaPrivada.rawValue) > 100 ? 100 : (self.inicPrivada + update.iniciativaPrivada.rawValue)
     }
     
     func endGame(win: Bool){
         if win == true{
-            //ganhou
+            print("ganhou")
         }else{
-            //perdeu
+            print("perdeu")
         }
     }
 }
