@@ -107,6 +107,7 @@ class ViewController: UIViewController {
                 if let cardMapCeel = cell as? CardCollectionViewCell{
                     if selecionadaDaRodada.type1 == nil {
                         selecionadaDaRodada.type1 = cardMapCeel
+                        cell.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                     }
                     else if selecionadaDaRodada.type2 == nil && cardMapCeel != selecionadaDaRodada.type1{
                         selecionadaDaRodada.type2 = cardMapCeel
@@ -158,7 +159,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
          collectionView.visibleCells.forEach { ( ncell
             ) in
             if ncell != cell{
-                ncell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
+                if ncell.backgroundColor != #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1){
+                    ncell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
+                }
             }
         }
     }
@@ -168,7 +171,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             selectedLabel.text = selectedCard?.building.name
             let status = selectedCard?.building.Build(selectedCard?.location ?? Location.anywhere, selectedCard?.destination)
             let cell = collectionView.cellForItem(at: indexPath)
-            cell?.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            if cell?.backgroundColor != #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1){
+                  cell?.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            }
             desSelect(collectionView,cell:cell!)
             resourcesLabel.text = "\(status!.recursos.rawValue)"
             populationLabel.text = "\(status!.populacao.rawValue)"
