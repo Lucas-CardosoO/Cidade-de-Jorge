@@ -53,7 +53,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         if collectionView == self.mapCollection{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellMapId, for: indexPath) as! MapCollectionViewCell
             cell.backgroundColor = self.map[indexPath.row].type == Location.periferica ? #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1) : #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
-            cell.label.text = self.map[indexPath.row].building == nil ? nil : self.map[indexPath.row].building?.name
+//            cell.label.text = self.map[indexPath.row].building == nil ? nil : self.map[indexPath.row].building?.name
             return cell
         }else{
             return UICollectionViewCell()

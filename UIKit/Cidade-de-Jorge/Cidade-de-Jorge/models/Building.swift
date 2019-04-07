@@ -17,9 +17,25 @@ enum Location: Int {
 }
 
 struct Status {
-    var recursos: Int
-    var populacao: Int
-    var iniciativaPrivada: Int
-    var arrecadacao: Int
+    var recursos: ValueChange
+    var populacao: ValueChange
+    var iniciativaPrivada: ValueChangePercent
+    var arrecadacao: ValueChangePercent
+}
+
+enum ValueChange:Int {
+    case majorImprove = 200
+    case minorImprove = 100
+    case neutral = 0
+    case minorDecrease = -100
+    case majorDecrease = -200
+}
+
+enum ValueChangePercent:Int {
+    case majorImprove = 30
+    case minorImprove = 15
+    case neutral = 0
+    case minorDecrease = -15
+    case majorDecrease = -30
 }
 
