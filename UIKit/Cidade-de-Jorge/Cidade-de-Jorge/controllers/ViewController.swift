@@ -56,6 +56,17 @@ class ViewController: UIViewController {
         sectionInset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     )
     
+    fileprivate func beginMap() {
+        for x in 0...15{
+            self.map.append((id: x, type: Location.periferica, building: nil))
+        }
+        
+        self.map[5].type = Location.central
+        self.map[6].type = Location.central
+        self.map[9].type = Location.central
+        self.map[10].type = Location.central
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,14 +78,7 @@ class ViewController: UIViewController {
         self.cardCollection.dataSource = self
         self.cardCollection.collectionViewLayout = columnLayoutCard
         
-        for x in 0...15{
-            self.map.append((id: x, type: Location.periferica, building: nil))
-        }
-        
-        self.map[5].type = Location.central
-        self.map[6].type = Location.central
-        self.map[9].type = Location.central
-        self.map[10].type = Location.central
+        beginMap()
         
         self.cards = [(Hospital(), .anywhere, nil),
                       (Park(), .anywhere, nil),
@@ -270,8 +274,47 @@ extension ViewController{
     func endGame(win: Bool){
         if win == true{
             print("ganhou")
+            
+            let alert = UIAlertController(title: "Ganhou", message: "Você ganhou", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Show", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: {
+                self.NumTurnos = 0
+                self.popularidade = 50
+                self.inicPrivada = 50
+                self.recursos = 200
+                self.arrec = 0
+                self.indicePopulacao = 15
+                self.indiceInicPrivad = 0
+                self.viewDidLoad()
+                self.map = []
+                self.beginMap()
+                self.updateDataInView()
+                self.mapCollection.reloadData()
+            })
+            
+            
+            
         }else{
             print("perdeu")
+            
+            let alert = UIAlertController(title: "Perdeu", message: "Você perdeu", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: {
+                self.NumTurnos = 0
+                self.popularidade = 50
+                self.inicPrivada = 50
+                self.recursos = 200
+                self.arrec = 0
+                self.indicePopulacao = 15
+                self.indiceInicPrivad = 0
+                self.viewDidLoad()
+                self.map = []
+                self.beginMap()
+                self.updateDataInView()
+                self.mapCollection.reloadData()
+            })
+            
+            
         }
     }
 }
