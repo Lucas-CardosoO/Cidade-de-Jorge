@@ -182,10 +182,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
                 cell?.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             }
             desSelect(collectionView,cell:cell!)
-            resourcesLabel.text = "recursos: \(status!.recursos.rawValue)"
-            populationLabel.text = "popularidade: \(status!.populacao.rawValue)"
-            incomeLabel.text = "arrecadação: \(status!.arrecadacao.rawValue)"
-            privateLabel.text = "iniciativa privada: \(status!.iniciativaPrivada.rawValue)"
+            resourcesLabel.text = "\(abs(status!.recursos.rawValue))"
+            populationLabel.text = "\(status!.populacao.rawValue)%"
+            incomeLabel.text = "\(status!.arrecadacao.rawValue)"
+            privateLabel.text = "\(status!.iniciativaPrivada.rawValue)%"
         }
     }
 }
@@ -248,9 +248,19 @@ extension ViewController{
 
         self.cardCollection.fadeOut()
         self.cardView.fadeOut()
+        self.mapCollection.fadeOut()
+        self.incomeUserLabel.fadeOut()
+        self.resourcesUserLabel.fadeOut()
+        self.populationUserLabel.fadeOut()
+        self.privateUserLabel.fadeOut()
         let timer = Timer.init(timeInterval: 2, repeats: false) { _ in
             self.cardCollection.fadeIn()
             self.cardView.fadeIn()
+            self.mapCollection.fadeIn()
+            self.incomeUserLabel.fadeIn()
+            self.resourcesUserLabel.fadeIn()
+            self.populationUserLabel.fadeIn()
+            self.privateUserLabel.fadeIn()
         }
         timer.fire()
 
