@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         cellsPerRow: 4,
         minimumInteritemSpacing: 10,
         minimumLineSpacing: 10,
-        sectionInset: UIEdgeInsets(top: 0, left: 200, bottom: 0, right: 200)
+        sectionInset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     )
     
     let columnLayoutCard = ColumnFlowLayout(
@@ -230,7 +230,6 @@ extension ViewController{
             }
             
             self.mapCollection.reloadData()
-            nextTurn()
         }
     }
     func nextTurn(){
@@ -239,6 +238,13 @@ extension ViewController{
         createCards()
         self.cardCollection.reloadData()
         self.NumTurnos += 1
+        self.cardCollection.fadeOut()
+        self.cardView.fadeOut()
+        let timer = Timer.init(timeInterval: 2, repeats: false) { _ in
+            self.cardCollection.fadeIn()
+            self.cardView.fadeIn()
+        }
+        timer.fire()
     }
     
     func updateStatus(update: Status){
@@ -252,4 +258,34 @@ extension ViewController{
             //perdeu
         }
     }
+}
+
+
+
+
+
+public extension UIView {
+    
+    /**
+     Fade in a view with a duration
+     
+     - parameter duration: custom animation duration
+     */
+    func fadeIn(duration: TimeInterval = 2.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    /**
+     Fade out a view with a duration
+     
+     - parameter duration: custom animation duration
+     */
+    func fadeOut(duration: TimeInterval = 2.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
+    }
+    
 }
