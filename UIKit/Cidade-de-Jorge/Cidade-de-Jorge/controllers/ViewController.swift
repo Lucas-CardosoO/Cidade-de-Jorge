@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     var selecionadaDaRodada:(type1 :CardCollectionViewCell?,type2:CardCollectionViewCell?)
     private let cellMapId = "mapCollectionViewCell"
     private let cellCardId = "CardCollectionViewCell"
-    
+    var NumTurnos = 0
     var popularidade = 50
     var inicPrivada = 50
     var recursos = 200
@@ -89,15 +89,16 @@ class ViewController: UIViewController {
                       (LuxBuilding(), .central, nil),
                       (LuxBuilding(), .periferica, nil)]
         
-        for _ in 0...4{
-            self.roundCards.append(self.cards.randomElement()!)
-        }
-        
-        //self.roundCards = [self.cards].randomElement()!
-        
-        self.selectedCard = self.roundCards.first
+       createCards()
     }
-    
+    func createCards(){
+        var listaCartas : [BuildingMap] = []
+        for _ in 0...4{
+           listaCartas.append(self.cards.randomElement()!)
+        }
+        self.roundCards =  listaCartas
+        
+    }
     
     @IBAction func yesPressed(_ sender: Any) {
 
@@ -121,7 +122,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func noNothingPressed(_ sender: Any) {
-        
+        nextTurn()
     }
     
 }
@@ -223,6 +224,16 @@ extension ViewController{
             }
             
             self.mapCollection.reloadData()
+            print(choice1.label.text)
+            print(choice2.label.text)
+            nextTurn()
         }
+    }
+    func nextTurn(){
+        selecionadaDaRodada.type1 = nil
+        selecionadaDaRodada.type2 = nil
+        createCards()
+        self.cardCollection.reloadData()
+        self.NumTurnos += 1
     }
 }
