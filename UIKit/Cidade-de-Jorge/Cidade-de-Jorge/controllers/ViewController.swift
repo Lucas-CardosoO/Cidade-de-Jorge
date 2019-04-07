@@ -146,11 +146,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             
             cell.label.text = self.roundCards[indexPath.row].building.name
             cell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
+            
+            cell.building = self.roundCards[indexPath.row].building
+            cell.location = self.roundCards[indexPath.row].location
+            
             return cell
         }
     }
     func desSelect(_ collectionView: UICollectionView , cell:UICollectionViewCell){
-         collectionView.visibleCells.map { ( ncell
+         collectionView.visibleCells.forEach { ( ncell
             ) in
             if ncell != cell{
                 ncell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
@@ -180,8 +184,14 @@ extension ViewController{
     func choicesInTurn(){
         if let choice1 = selecionadaDaRodada.type1 , let choice2 = selecionadaDaRodada.type2 {
             // aqui leal faz ais par
-            print(choice1.label.text)
-            print(choice2.label.text)
+            
+//            cards[0]
+            
+            print(choice1.label.text ?? 0)
+            let status = choice1.building.Build(choice1.location, nil)
+            
+            
+            print(choice2.label.text ?? 0)
        
         }
     }
