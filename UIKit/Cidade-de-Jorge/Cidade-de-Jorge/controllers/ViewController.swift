@@ -194,14 +194,16 @@ extension ViewController{
                 case .periferica:
                     return block.type == Location.periferica
                 }
+                }.filter { (cell) -> Bool in
+                    return  choice1.building.Build(choice1.location, cell.building) != nil
             }
             
             var buildBlock = buildArray.randomElement()
             
-            if let status = choice1.building.Build(choice1.location, buildBlock?.building){
+            if let buildBlock = buildBlock, let status = choice1.building.Build(choice1.location, buildBlock.building){
                 //TODO: aplicar status
                 print(status)
-                self.map[(buildBlock?.id)!].building = choice1.building
+                self.map[buildBlock.id].building = choice1.building
             }
             
             buildArray = self.map.filter { (block) -> Bool in
@@ -213,19 +215,19 @@ extension ViewController{
                 case .periferica:
                     return block.type == Location.periferica
                 }
+                }.filter { (cell) -> Bool in
+                    return  choice1.building.Build(choice2.location, cell.building) != nil
             }
             
             buildBlock = buildArray.randomElement()
             
-            if let status = choice1.building.Build(choice2.location, buildBlock?.building){
+            if let buildBlock = buildBlock, let status = choice1.building.Build(choice1.location, buildBlock.building){
                 //TODO: aplicar status
                 print(status)
-                self.map[(buildBlock?.id)!].building = choice2.building
+                self.map[buildBlock.id].building = choice2.building
             }
             
             self.mapCollection.reloadData()
-            print(choice1.label.text)
-            print(choice2.label.text)
             nextTurn()
         }
     }
