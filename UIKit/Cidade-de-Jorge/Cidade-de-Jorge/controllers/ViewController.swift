@@ -38,6 +38,17 @@ class ViewController: UIViewController {
         self.map[9].type = Location.central
         self.map[10].type = Location.central
     }
+    
+    
+    @IBAction func yesPressed(_ sender: Any) {
+    }
+    
+    @IBAction func noPressed(_ sender: Any) {
+    }
+    
+    @IBAction func noNothingPressed(_ sender: Any) {
+    }
+    
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{

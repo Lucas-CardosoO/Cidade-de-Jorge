@@ -179,12 +179,25 @@
                                 <rect key="frame" x="0.0" y="924" width="768" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gtf-Ge-Zqd">
-                                        <rect key="frame" x="0.0" y="35" width="384" height="30"/>
+                                        <rect key="frame" x="0.0" y="35" width="256" height="30"/>
                                         <state key="normal" title="NÃO"/>
+                                        <connections>
+                                            <action selector="noPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4pd-V2-xYG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bd7-EN-e75">
+                                        <rect key="frame" x="256" y="35" width="256" height="30"/>
+                                        <state key="normal" title="FAZER NADA"/>
+                                        <connections>
+                                            <action selector="noNothingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u4q-M4-T5M"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNa-MI-xug">
-                                        <rect key="frame" x="384" y="35" width="384" height="30"/>
+                                        <rect key="frame" x="512" y="35" width="256" height="30"/>
                                         <state key="normal" title="SIM"/>
+                                        <connections>
+                                            <action selector="yesPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uQY-P0-Tls"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
