@@ -134,7 +134,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func doNothingPressed(_ sender: Any) {
-        self.updateStatus(update: Status(recursos: .neutral, populacao: .minorDecrease, iniciativaPrivada: .neutral, arrecadacao: .neutral))
+        self.recursos += self.arrec
+        if(selecionadaDaRodada == nil){
+            self.updateStatus(update: Status(recursos: .neutral, populacao: .minorDecrease, iniciativaPrivada: .neutral, arrecadacao: .neutral))
+        }
         nextTurn()
     }
     
@@ -161,7 +164,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             
             cell.label.text = ""
             cell.tileImages.image = UIImage(named: self.roundCards[indexPath.row].building.name)
-            cell.backgroundColor = #colorLiteral(red: 0, green: 0.8470588235, blue: 0.4, alpha: 1)
+            cell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
+            cell.layer.cornerRadius = 20
             
             cell.building = self.roundCards[indexPath.row].building
             cell.location = self.roundCards[indexPath.row].location
@@ -277,7 +281,7 @@ extension ViewController{
     func updateStatus(update: Status){
         self.arrec += update.arrecadacao.rawValue
         
-        self.recursos += self.arrec
+//        self.recursos += self.arrec
         self.popularidade = (self.popularidade + update.populacao.rawValue) > 100 ? 100 : (self.popularidade + update.populacao.rawValue)
         self.inicPrivada = (self.inicPrivada + update.iniciativaPrivada.rawValue) > 100 ? 100 : (self.inicPrivada + update.iniciativaPrivada.rawValue)
     }
