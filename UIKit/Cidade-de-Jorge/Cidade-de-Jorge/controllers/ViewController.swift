@@ -129,6 +129,7 @@ class ViewController: UIViewController {
         populationUserLabel.text = "\(self.popularidade)%"
         incomeUserLabel.text = "\(self.arrec)"
         privateUserLabel.text = "\(self.inicPrivada)%"
+        
     }
     
     
@@ -151,15 +152,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.mapCollection{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellMapId, for: indexPath) as! MapCollectionViewCell
-            cell.backgroundColor = self.map[indexPath.row].type == Location.periferica ? #colorLiteral(red: 1, green: 0.9568627451, blue: 0.6274509804, alpha: 1) : #colorLiteral(red: 0.4509803922, green: 1, blue: 0.9960784314, alpha: 1)
+            cell.backgroundColor = self.map[indexPath.row].type == Location.periferica ? #colorLiteral(red: 0.7215686275, green: 0.9137254902, blue: 0.5254901961, alpha: 1) : #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
             cell.label.text = self.map[indexPath.row].building == nil ? nil : nil//self.map[indexPath.row].building?.name
             cell.tileImage.image = self.map[indexPath.row].building == nil ? nil : UIImage(named: self.map[indexPath.row].building!.name)
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellCardId, for: indexPath) as! CardCollectionViewCell
             
-            cell.label.text = self.roundCards[indexPath.row].building.name
-            cell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
+            cell.label.text = ""
+            cell.tileImages.image = UIImage(named: self.roundCards[indexPath.row].building.name)
+            cell.backgroundColor = #colorLiteral(red: 0, green: 0.8470588235, blue: 0.4, alpha: 1)
             
             cell.building = self.roundCards[indexPath.row].building
             cell.location = self.roundCards[indexPath.row].location
@@ -196,6 +198,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
             populationLabel.text = "\(status!.populacao.rawValue)%"
             incomeLabel.text = "\(status!.arrecadacao.rawValue)"
             privateLabel.text = "\(status!.iniciativaPrivada.rawValue)%"
+            switch selectedCard.location {
+            case .anywhere:
+                cardView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            case .central:
+                cardView.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+            case .periferica:
+                cardView.backgroundColor = #colorLiteral(red: 0.7215686275, green: 0.9137254902, blue: 0.5254901961, alpha: 1)
+            }
         }
     }
 }

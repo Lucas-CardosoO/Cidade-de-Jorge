@@ -10,6 +10,7 @@ import UIKit
 
 class CardCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var tileImages: UIImageView!
     @IBOutlet weak var label: UILabel!
     var building: Building!
     var location: Location!
