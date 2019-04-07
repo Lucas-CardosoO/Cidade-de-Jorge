@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var cards: [BuildingMap] = []
     var roundCards: [BuildingMap] = []
     var selectedCard: BuildingMap!
-    var selecionadaDaRodada:(type1 :CardCollectionViewCell,type2:CardCollectionViewCell)?
+    var selecionadaDaRodada:(type1 :CardCollectionViewCell?,type2:CardCollectionViewCell?)
     private let cellMapId = "mapCollectionViewCell"
     private let cellCardId = "CardCollectionViewCell"
     
@@ -104,11 +104,11 @@ class ViewController: UIViewController {
         self.cardCollection.visibleCells.forEach({ (cell) in
             if cell.backgroundColor == #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1) {
                 if let cardMapCeel = cell as? CardCollectionViewCell{
-                    if selecionadaDaRodada?.type1 == nil {
-                        selecionadaDaRodada?.type1 = cardMapCeel
+                    if selecionadaDaRodada.type1 == nil {
+                        selecionadaDaRodada.type1 = cardMapCeel
                     }
-                    else if selecionadaDaRodada?.type2 == nil{
-                        selecionadaDaRodada?.type2 = cardMapCeel
+                    else if selecionadaDaRodada.type2 == nil{
+                        selecionadaDaRodada.type2 = cardMapCeel
                         choicesInTurn()
                     }
                 }
@@ -178,10 +178,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 
 extension ViewController{
     func choicesInTurn(){
-        if let choice1 = selecionadaDaRodada?.type1 , let choice2 = selecionadaDaRodada?.type2 {
+        if let choice1 = selecionadaDaRodada.type1 , let choice2 = selecionadaDaRodada.type2 {
             // aqui leal faz ais par
-            print(choice1.label)
-            print(choice2.label)
+            print(choice1.label.text)
+            print(choice2.label.text)
+       
         }
     }
 }
