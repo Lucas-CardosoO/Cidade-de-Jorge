@@ -9,8 +9,9 @@
 import Foundation
 
 class Habitation: Building {
-    func Build(_ location: Location, _ building: Building?) -> Status {
-        var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+    func Build(_ location: Location, _ building: Building?) -> Status? {
+        //        var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+        var status: Status? = nil
         
         if(building == nil){
             switch location {

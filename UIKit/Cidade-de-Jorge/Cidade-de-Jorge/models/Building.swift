@@ -7,7 +7,7 @@
 //
 
 protocol Building {
-    func Build(_ location: Location, _ building: Building?) -> Status
+    func Build(_ location: Location, _ building: Building?) -> Status?
     var name: String {get}
 }
 

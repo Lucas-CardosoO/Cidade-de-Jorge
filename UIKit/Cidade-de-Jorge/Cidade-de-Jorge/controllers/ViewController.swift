@@ -9,10 +9,11 @@
 import UIKit
 
 typealias BuildingMap = (building: Building, location: Location, destination: Building?)
+typealias MapCell = (id: Int, type: Location, building: Building?)
 
 class ViewController: UIViewController {
     
-    var map: [(id: Int, type: Location, building: Building?)] = []
+    var map: [MapCell] = []
     var cards: [BuildingMap] = []
     var roundCards: [BuildingMap] = []
     var selectedCard: BuildingMap!
@@ -67,7 +68,6 @@ class ViewController: UIViewController {
         self.cardCollection.collectionViewLayout = columnLayoutCard
         
         for x in 0...15{
-            print(x)
             self.map.append((id: x, type: Location.periferica, building: nil))
         }
         
@@ -183,16 +183,46 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 extension ViewController{
     func choicesInTurn(){
         if let choice1 = selecionadaDaRodada.type1 , let choice2 = selecionadaDaRodada.type2 {
-            // aqui leal faz ais par
             
-//            cards[0]
+            var buildArray: [MapCell] = self.map.filter { (block) -> Bool in
+                switch choice1.location!{
+                case .anywhere:
+                    return true
+                case .central:
+                    return block.type == Location.central
+                case .periferica:
+                    return block.type == Location.periferica
+                }
+            }
             
-            print(choice1.label.text ?? 0)
-            let status = choice1.building.Build(choice1.location, nil)
+            var buildBlock = buildArray.randomElement()
             
+            if let status = choice1.building.Build(choice1.location, buildBlock?.building){
+                //TODO: aplicar status
+                print(status)
+                self.map[(buildBlock?.id)!].building = choice1.building
+            }
             
-            print(choice2.label.text ?? 0)
-       
+            buildArray = self.map.filter { (block) -> Bool in
+                switch choice2.location!{
+                case .anywhere:
+                    return true
+                case .central:
+                    return block.type == Location.central
+                case .periferica:
+                    return block.type == Location.periferica
+                }
+            }
+            
+            buildBlock = buildArray.randomElement()
+            
+            if let status = choice1.building.Build(choice2.location, buildBlock?.building){
+                //TODO: aplicar status
+                print(status)
+                self.map[(buildBlock?.id)!].building = choice2.building
+            }
+            
+            self.mapCollection.reloadData()
         }
     }
 }

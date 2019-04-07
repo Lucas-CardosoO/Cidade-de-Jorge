@@ -9,8 +9,9 @@
 import Foundation
 
 class Factory: Building {
-    func Build(_ location: Location, _ building: Building?) -> Status {
-        var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+    func Build(_ location: Location, _ building: Building?) -> Status? {
+//        var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+        var status: Status? = nil
         
         if(building == nil){
             status = Status(recursos: .majorDecrease, populacao: .neutral, iniciativaPrivada: .majorImprove, arrecadacao: .majorImprove)

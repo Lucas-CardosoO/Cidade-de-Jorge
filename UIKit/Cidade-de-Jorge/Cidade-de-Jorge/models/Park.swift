@@ -9,9 +9,10 @@
 import Foundation
 
 class Park: Building {
-    func Build(_ location: Location, _ building: Building?) -> Status {
+    func Build(_ location: Location, _ building: Building?) -> Status? {
         if building != nil{
-            return Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+//            return Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+            return nil
         }else{
             return Status(recursos: .majorDecrease, populacao: .majorImprove, iniciativaPrivada: .minorDecrease, arrecadacao: .minorDecrease)
         }
