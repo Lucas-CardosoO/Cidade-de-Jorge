@@ -14,6 +14,7 @@ protocol Building {
 enum Location: Int {
     case central = 0
     case periferica
+    case anywhere = 2
 }
 
 struct Status {

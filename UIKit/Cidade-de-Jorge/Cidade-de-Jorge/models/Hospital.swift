@@ -12,7 +12,7 @@ class Hospital: Building {
     func Build(_ location: Location, _ building: Building?) -> Status {
         var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
         
-        if building != nil {
+        if building == nil {
             status = Status(recursos: .majorDecrease, populacao: .majorImprove, iniciativaPrivada: .minorDecrease, arrecadacao: .minorDecrease)
         }
         

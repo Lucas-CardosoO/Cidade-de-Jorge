@@ -11,8 +11,12 @@ import Foundation
 class LuxBuilding: Building {
     func Build(_ location: Location, _ building: Building?) -> Status {
         
-        if !(building is Habitation){
-            return Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+//        if !(building is Habitation){
+//            return Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
+//        }
+        
+        if building != nil {
+            return Status(recursos: .neutral, populacao: .neutral , iniciativaPrivada: .neutral, arrecadacao: .neutral)
         }
         
         var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)

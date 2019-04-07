@@ -8,18 +8,26 @@
 
 import UIKit
 
+typealias BuildingMap = (building: Building, location: Location, destination: Building?)
+
 class ViewController: UIViewController {
     
     var map: [(id: Int, type: Location, building: Building?)] = []
-    var cards: [Building] = []
-    var roundCards: [Building] = []
+    var cards: [BuildingMap] = []
+    var roundCards: [BuildingMap] = []
+    var selectedCard: BuildingMap!
     
     private let cellMapId = "mapCollectionViewCell"
     private let cellCardId = "CardCollectionViewCell"
 
+    @IBOutlet weak var selectedLabel: UILabel!
     @IBOutlet weak var cardCollection: UICollectionView!
     @IBOutlet weak var mapCollection: UICollectionView!
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var resourcesCard: UILabel!
+    @IBOutlet weak var incomeCard: UILabel!
+    @IBOutlet weak var populationCard: UILabel!
+    @IBOutlet weak var privateCard: UILabel!
     
     let columnLayoutMap = ColumnFlowLayout(
         cellsPerRow: 4,
@@ -56,22 +64,26 @@ class ViewController: UIViewController {
         self.map[9].type = Location.central
         self.map[10].type = Location.central
         
-        self.cards = [Hospital(),
-                      Park(),
-                      Habitation(),
-                      Habitation(),
-                      School(),
-                      School(),
-                      Factory(),
-                      Factory(),
-                      Shopping(),
-                      Shopping(),
-                      LuxBuilding(),
-                      LuxBuilding()]
+        self.cards = [(Hospital(), .anywhere, nil),
+                      (Park(), .anywhere, nil),
+                      (Habitation(), .periferica, nil),
+                      (Habitation(), .central, nil),
+                      (School(), .periferica, nil),
+                      (School(), .central, nil),
+                      (Factory(), .anywhere, nil),
+                      (Factory(), .anywhere, Habitation()),
+                      (Shopping(), .anywhere, Habitation()),
+                      (Shopping(), .anywhere, nil),
+                      (LuxBuilding(), .central, nil),
+                      (LuxBuilding(), .periferica, nil)]
         
-        for x in 0...4{
-            self.roundCards.append(self.cards[x])
-        }
+//        for x in 0...4{
+//            self.roundCards.append(self.cards[x])
+//        }
+        
+        self.roundCards = self.cards
+        
+        self.selectedCard = self.roundCards.first
     }
     
     
@@ -104,11 +116,22 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellCardId, for: indexPath) as! CardCollectionViewCell
             
-            cell.label.text = self.roundCards[indexPath.row].name
+            cell.label.text = self.roundCards[indexPath.row].building.name
             cell.backgroundColor = #colorLiteral(red: 0.2669947743, green: 0.6731787324, blue: 0.3991898, alpha: 1)
             return cell
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.cardCollection {
+            selectedCard = roundCards[indexPath.row]
+            selectedLabel.text = selectedCard?.building.name
+            let status = selectedCard?.building.Build(selectedCard?.location ?? Location.anywhere, selectedCard?.destination)
+            resourcesCard.text = "\(status!.recursos.rawValue)"
+            populationCard.text = "\(status!.populacao.rawValue)"
+            incomeCard.text = "\(status!.arrecadacao.rawValue)"
+            privateCard.text = "\(status!.iniciativaPrivada.rawValue)"
+        }
+    }
 }
 

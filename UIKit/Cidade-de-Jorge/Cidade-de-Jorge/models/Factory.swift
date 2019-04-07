@@ -12,7 +12,7 @@ class Factory: Building {
     func Build(_ location: Location, _ building: Building?) -> Status {
         var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
         
-        if !(building is Habitation){
+        if !(building is Habitation) && building != nil{
             return Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
         }
         
