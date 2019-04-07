@@ -151,8 +151,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.mapCollection{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellMapId, for: indexPath) as! MapCollectionViewCell
-            cell.backgroundColor = self.map[indexPath.row].type == Location.periferica ? #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1) : #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
-            cell.label.text = self.map[indexPath.row].building == nil ? nil : self.map[indexPath.row].building?.name
+            cell.backgroundColor = self.map[indexPath.row].type == Location.periferica ? #colorLiteral(red: 1, green: 0.9568627451, blue: 0.6274509804, alpha: 1) : #colorLiteral(red: 0.4509803922, green: 1, blue: 0.9960784314, alpha: 1)
+            cell.label.text = self.map[indexPath.row].building == nil ? nil : nil//self.map[indexPath.row].building?.name
+            cell.tileImage.image = self.map[indexPath.row].building == nil ? nil : UIImage(named: self.map[indexPath.row].building!.name)
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellCardId, for: indexPath) as! CardCollectionViewCell

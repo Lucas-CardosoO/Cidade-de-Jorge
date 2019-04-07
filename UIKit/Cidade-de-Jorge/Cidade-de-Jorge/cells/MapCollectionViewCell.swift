@@ -10,4 +10,5 @@ import UIKit
 
 class MapCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var tileImage: UIImageView!
 }

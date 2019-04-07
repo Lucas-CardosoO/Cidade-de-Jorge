@@ -45,16 +45,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JRl-vc-Q62">
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="JRl-vc-Q62" firstAttribute="width" secondItem="yyH-fm-GTw" secondAttribute="width" id="0HL-SS-UTd"/>
                                             <constraint firstItem="t1a-Qu-QDj" firstAttribute="width" secondItem="yyH-fm-GTw" secondAttribute="width" id="3m4-qs-KNP"/>
+                                            <constraint firstItem="JRl-vc-Q62" firstAttribute="centerX" secondItem="yyH-fm-GTw" secondAttribute="centerX" id="4AY-Ql-5z7"/>
                                             <constraint firstItem="t1a-Qu-QDj" firstAttribute="centerX" secondItem="yyH-fm-GTw" secondAttribute="centerX" id="9uh-PM-cn1"/>
+                                            <constraint firstItem="JRl-vc-Q62" firstAttribute="height" secondItem="yyH-fm-GTw" secondAttribute="height" id="AZz-71-qO4"/>
                                             <constraint firstItem="t1a-Qu-QDj" firstAttribute="centerY" secondItem="yyH-fm-GTw" secondAttribute="centerY" id="Yeu-0x-O4E"/>
                                             <constraint firstItem="t1a-Qu-QDj" firstAttribute="height" secondItem="yyH-fm-GTw" secondAttribute="height" id="dTY-tN-400"/>
+                                            <constraint firstItem="JRl-vc-Q62" firstAttribute="centerY" secondItem="yyH-fm-GTw" secondAttribute="centerY" id="loa-vF-GjM"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="label" destination="t1a-Qu-QDj" id="vOH-YV-ZE0"/>
+                                            <outlet property="tileImage" destination="JRl-vc-Q62" id="aCv-sl-tV7"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CBM-kT-xLG">
