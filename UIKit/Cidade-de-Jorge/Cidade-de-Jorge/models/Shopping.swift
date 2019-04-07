@@ -12,13 +12,9 @@ class Shopping: Building {
     func Build(_ location: Location, _ building: Building?) -> Status {
         var status = Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
         
-        if !(building is Habitation) && building != nil{
-            return Status(recursos: .neutral, populacao: .neutral, iniciativaPrivada: .neutral, arrecadacao: .neutral)
-        }
-        
         if(building == nil){
             status = Status(recursos: .minorDecrease, populacao: .minorImprove, iniciativaPrivada: .majorImprove, arrecadacao: .minorImprove)
-        } else {
+        } else if (building is Habitation) {
             status = Status(recursos: .neutral, populacao: .majorDecrease, iniciativaPrivada: .majorImprove, arrecadacao: .minorImprove)
         }
         
